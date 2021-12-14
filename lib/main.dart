@@ -16,8 +16,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        primaryColor: Colors.purple,
         primarySwatch: Colors.purple,
-        backgroundColor: Colors.pinkAccent[100],
+        backgroundColor: Colors.pink[100],
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -38,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(),
       body: Center(
         
@@ -48,7 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: TextField(
                   decoration: const InputDecoration(
-                    label: Text('birth year!'),
+                    label: Text('birth year!',
+                    style: TextStyle(color: Colors.purple),
+                    textAlign: TextAlign.center,
+                    ),
                     labelStyle: TextStyle(fontStyle: FontStyle.italic),
                   ),
                   keyboardType: TextInputType.number,
@@ -69,7 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-      );
-    
+     );
   }
 }

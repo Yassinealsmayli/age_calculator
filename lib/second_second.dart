@@ -8,6 +8,7 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     int age = DateTime.now().year - birthYear;
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(),
       body: Center(
         child: Text('your age is $age'),
