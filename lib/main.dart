@@ -41,26 +41,28 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(),
-      body: Center(
-        
+      body: Container(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: TextField(
-                  decoration: const InputDecoration(
-                    label: Text('birth year!',
+              TextField(
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.calendar_today_rounded),
+                  label: Text(
+                    'birth year!',
                     style: TextStyle(color: Colors.purple),
                     textAlign: TextAlign.center,
-                    ),
-                    labelStyle: TextStyle(fontStyle: FontStyle.italic),
                   ),
-                  keyboardType: TextInputType.number,
-                  controller: widget.birthYear,
+                  labelStyle: TextStyle(fontStyle: FontStyle.italic),
                 ),
+                keyboardType: TextInputType.number,
+                controller: widget.birthYear,
               ),
-              const SizedBox(height: 30,),
+              const SizedBox(
+                height: 30,
+              ),
               ElevatedButton(
                   onPressed: () {
                     (widget.birthYear.text.isNotEmpty)
@@ -74,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-     );
+      ),
+    );
   }
 }
