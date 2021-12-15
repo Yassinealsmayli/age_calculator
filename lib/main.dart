@@ -36,19 +36,49 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  datePickerChoose() async {
+    DateTime selected = DateTime.now();
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Select Year"),
+          content: SizedBox(
+            // Need to use container to add size constraint.
+            width: 300,
+            height: 300,
+            child: YearPicker(
+              firstDate: DateTime(1950),
+              lastDate: DateTime(DateTime.now().year),
+              initialDate: DateTime.now(),
+              selectedDate: selected,
+              onChanged: (DateTime dateTime) {
+                widget.birthYear.text = "${dateTime.year}";
+                // close the dialog when year is selected.
+                Navigator.pop(context);
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(),
       body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 50),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
                 decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
                   prefixIcon: Icon(Icons.calendar_today_rounded),
                   label: Text(
                     'birth year!',
@@ -72,7 +102,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 )))
                         : () {};
                   },
-                  child: const Text('Generate'))
+                  child: const Text('Generate')),
+              TextButton(
+                  onPressed: () {
+                    datePickerChoose();
+                  },
+                  child: const Text('get year from date picker!'))
             ],
           ),
         ),
